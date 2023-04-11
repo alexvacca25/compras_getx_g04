@@ -16,21 +16,22 @@ class ComprasController extends GetxController {
   int get facturar => totalcompra.value;
   List<Articulo> get listaGcompra => listaComp.value;
 
- 
   gestionArt(String op, int i) {
     switch (op) {
       case "+":
-        listaComp.value.add(listaArt.value[i]);
-        listaComp.refresh();
         (listaArt.value[i].existencias > 0)
             ? listaArt.value[i].existencias--
             : 0;
+        listaComp.value.add(listaArt.value[i]);
+        listaComp.refresh();
         totalcompra.value++;
         listaArt.refresh();
         break;
       case "-":
+        print("Entro al metodo");
         listaArt.value[i].existencias++;
         totalcompra.value--;
+        print(totalcompra);
         listaArt.refresh();
         break;
       default:
